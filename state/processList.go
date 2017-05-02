@@ -324,6 +324,8 @@ func (p *ProcessList) GetVirtualServers(minute int, identityChainID interfaces.I
 		return false, -1
 	}
 
+	p.MakeMap()
+
 	for i := 0; i < len(p.FedServers); i++ {
 		fedix := p.ServerMap[minute][i]
 		if fedix == fedIndex {
