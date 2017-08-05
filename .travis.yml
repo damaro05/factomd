@@ -34,7 +34,7 @@ before_script:
 script:
   # Make sure that everything builds
   - if [ "$ITEM" = "BUILD_ALPINE" ]; then echo "Build successful"; fi
-  - if [ "$ITEM" = "BUILD_AND_TEST" ]; then docker run --rm -e COVERALLS_TOKEN --privileged=true --entrypoint='/go/bin/goveralls' factomd  -v -service=travis-ci -ignore=$(paste -sd, .coverignore); fi
+  - if [ "$ITEM" = "BUILD_AND_TEST" ]; then travis_wait 60 sleep 3600 && docker run --rm -e COVERALLS_TOKEN --entrypoint='/go/bin/goveralls' factomd  -v -service=travis-ci -ignore=$(paste -sd, .coverignore); fi
 
 notifications:
   email: false
